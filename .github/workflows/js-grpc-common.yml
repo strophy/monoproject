@@ -1,0 +1,23 @@
+name: JS GRPC Common Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 */160 * * *'
+  release:
+    types:
+      - published
+  pull_request:
+    branches:
+      - master
+      - v[0-9]+.[0-9]+-dev
+    paths:
+      - 'packages/js-grpc-common/**'
+      - '.github/workflows/test-js-grpc-common.yml'
+
+jobs:
+  test:
+    name: Run JS GRPC Common tests
+    uses: strophy/monoproject/.github/workflows/test.yml
+    with:
+      package-directory: packages/js-grpc-common
