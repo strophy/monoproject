@@ -9,6 +9,7 @@ Dash library for JavaScript/TypeScript ecosystem (Wallet, DAPI, Primitives, BLS,
 
 Dash library allows you to connect to DAPI and receive or broadcast payments on the Dash Network, manage identifies, register data contracts, retrieve or submit documents on the Dash Platform, all within a single library.
 
+
 ## Install
 
 ### Browser
