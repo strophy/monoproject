@@ -12,8 +12,8 @@ on:
       - master
       - v[0-9]+.[0-9]+-dev
     paths:
-      - packages/js-dpp/**
-      - .github/workflows/test-js-dpp.yml
+      - 'packages/js-dpp/**'
+      - '.github/workflows/test-js-dpp.yml'
 
 jobs:
   test:
