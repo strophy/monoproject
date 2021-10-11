@@ -18,6 +18,6 @@ on:
 jobs:
   feature-flags-contract-tests:
     name: Run DAPI Client tests
-    uses: strophy/monoproject/.github/workflows/test.yml@master
+    uses: strophy/monoproject/.github/workflows/test.yml@use-package-commands
     with:
-      package-directory: packages/feature-flags-contract
+      package: '@dashevo/feature-flags-contract'

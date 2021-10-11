@@ -18,6 +18,6 @@ on:
 jobs:
   js-dapi-client-tests:
     name: Run JS DAPI Client tests
-    uses: strophy/monoproject/.github/workflows/test.yml@master
+    uses: strophy/monoproject/.github/workflows/test.yml@use-package-commands
     with:
-      package-directory: packages/js-dapi-client
+      package: '@dashevo/dapi-client'
