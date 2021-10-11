@@ -18,6 +18,6 @@ on:
 jobs:
   test:
     name: Run JS GRPC Common tests
-    uses: strophy/monoproject/.github/workflows/test.yml@a5b6eb56d1d01078aa817b100719fccd708c9a19
+    uses: strophy/monoproject/.github/workflows/test.yml@a3b36df72d3beef4d6e182f3b9e66baa433b89fa
     with:
       package-directory: './packages/js-grpc-common'
