@@ -20,4 +20,4 @@ jobs:
     name: Run DPNS Contract tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/dpns-contract
+      package: '@dashevo/dpns-contract'

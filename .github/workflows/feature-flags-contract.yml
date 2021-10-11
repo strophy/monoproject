@@ -20,4 +20,4 @@ jobs:
     name: Run DAPI Client tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/feature-flags-contract
+      package: '@dashevo/feature-flags-contract'

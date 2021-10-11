@@ -20,4 +20,4 @@ jobs:
     name: Run DAPI GRPC tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/dapi-grpc
+      package: '@dashevo/dapi-grpc'

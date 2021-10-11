@@ -20,4 +20,4 @@ jobs:
     name: Run JS ABCI tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/js-abci
+      package: '@dashevo/abci'

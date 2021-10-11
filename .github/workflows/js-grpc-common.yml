@@ -20,4 +20,4 @@ jobs:
     name: Run JS GRPC Common tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/js-grpc-common
+      package: '@dashevo/grpc-common'

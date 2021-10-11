@@ -20,4 +20,4 @@ jobs:
     name: Run JS DAPI Client tests
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
-      package-directory: packages/js-dapi-client
+      package: '@dashevo/dapi-client'
