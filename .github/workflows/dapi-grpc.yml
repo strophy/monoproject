@@ -1,0 +1,23 @@
+name: DAPI GRPC Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '41 */160 * * *'
+  release:
+    types:
+      - published
+  pull_request:
+    branches:
+      - master
+      - v[0-9]+\.[0-9]+-dev
+    paths:
+      - packages/dapi-grpc/**
+      - .github/workflows/dapi-grpc.yml
+
+jobs:
+  dapi-grpc-tests:
+    name: Run DAPI GRPC tests
+    uses: strophy/monoproject/.github/workflows/test.yml@a3b36df72d3beef4d6e182f3b9e66baa433b89fa
+    with:
+      package-directory: packages/dapi-grpc
