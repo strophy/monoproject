@@ -18,6 +18,6 @@ on:
 jobs:
   dapi-grpc-tests:
     name: Run DAPI GRPC tests
-    uses: strophy/monoproject/.github/workflows/test.yml@master
+    uses: strophy/monoproject/.github/workflows/test.yml@use-package-commands
     with:
-      package-directory: packages/dapi-grpc
+      package: '@dashevo/dapi-grpc'
