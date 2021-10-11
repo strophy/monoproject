@@ -10,13 +10,13 @@ on:
   pull_request:
     branches:
       - master
-      - v[0-9]+.[0-9]+-dev
+      - v[0-9]+\.[0-9]+-dev
     paths:
       - './packages/js-grpc-common/**'
-      - '.github/workflows/test-js-grpc-common.yml'
+      - '.github/workflows/js-grpc-common.yml'
 
 jobs:
-  test:
+  js-grpc-common-tests:
     name: Run JS GRPC Common tests
     uses: 'strophy/monoproject/.github/workflows/test.yml@a3b36df72d3beef4d6e182f3b9e66baa433b89fa'
     with:
