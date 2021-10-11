@@ -1,3 +1,5 @@
+name: Platform Test Suite
+
 on:
   release:
     types:
