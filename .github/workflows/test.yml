@@ -16,6 +16,11 @@ jobs:
         working-directory: ${{ inputs.package-directory }}
 
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9
+        with:
+          access_token: ${{ github.token }}
+
       - uses: actions/checkout@v2
 
       - uses: actions/setup-node@v2
