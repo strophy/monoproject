@@ -5,6 +5,10 @@ on:
         description: The directory containing the package to test
         type: string
         default: .
+      run-test-suite:
+        description: Whether to run Platform Test Suite
+        type: boolean
+        default: false
 
 jobs:
   test:
@@ -40,6 +44,38 @@ jobs:
 
       - name: Run ESLinter
         run: npm run lint
+
+      - name: Load workflow dotenv file
+        if: ${{ inputs.run-test-suite }}
+        uses: c-py/action-dotenv-to-setenv@v3
+        with:
+          env-file: ${{ inputs.package-directory }}/.github/workflows/.env
+
+      - name: Set compatible branches for Platform components
+        if: ${{ inputs.run-test-suite }}
+        uses: dashevo/gh-action-platform-branches@v1
+        id: platform-branches
+        with:
+          override-major-version: 0
+          override-dashmate-branch: ${{ env.DASHMATE_BRANCH }}
+          override-testsuite-branch: ${{ env.TEST_SUITE_BRANCH }}
+
+      - name: Start Dash local network
+        if: ${{ inputs.run-test-suite }}
+        uses: dashevo/gh-action-start-local-network@v1
+        id: start-local-network
+        with:
+          drive-branch: ${{ env.DRIVE_BRANCH }}
+          dapi-branch: ${{ env.DAPI_BRANCH }}
+          dashmate-branch: ${{ steps.platform-branches.outputs.dashmate-branch }}
+
+      - name: Create dotenv file
+        if: ${{ inputs.run-test-suite }}
+        run: |
+          echo "DAPI_SEED=127.0.0.1" > .env
+          echo "FAUCET_PRIVATE_KEY=${{ steps.start-local-network.outputs.faucet-private-key }}" >> .env
+          echo "NETWORK=regtest" >> .env
+          echo "DPNS_CONTRACT_ID=${{ steps.start-local-network.outputs.dpns-contract-id }}" >> .env
 
       - name: Run tests
         run: npm run test
