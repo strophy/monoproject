@@ -12,12 +12,12 @@ on:
       - master
       - v[0-9]+.[0-9]+-dev
     paths:
-      - 'packages/js-grpc-common/**'
+      - './packages/js-grpc-common/**'
       - '.github/workflows/test-js-grpc-common.yml'
 
 jobs:
   test:
     name: Run JS GRPC Common tests
-    uses: strophy/monoproject/.github/workflows/test.yml
+    uses: strophy/monoproject/.github/workflows/test.yml@a5b6eb56d1d01078aa817b100719fccd708c9a19
     with:
-      package-directory: packages/js-grpc-common
+      package-directory: './packages/js-grpc-common'
