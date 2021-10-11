@@ -18,7 +18,7 @@ on:
 jobs:
   wallet-lib-tests:
     name: Run Wallet Library tests
-    uses: strophy/monoproject/.github/workflows/test.yml@master
+    uses: strophy/monoproject/.github/workflows/test.yml@216cae5b9fda76187e26f2e4102040aadd5de1c4
     with:
       package-directory: packages/wallet-lib
       run-test-suite: true
