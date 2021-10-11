@@ -1,8 +1,8 @@
 on:
   workflow_call:
     inputs:
-      package-directory:
-        description: The directory containing the package to test
+      package:
+        description: The calling package
         type: string
         default: .
 
@@ -11,9 +11,6 @@ jobs:
     name: Test Dash Platform component
     runs-on: ubuntu-20.04
     timeout-minutes: 10
-    defaults:
-      run:
-        working-directory: ${{ inputs.package-directory }}
 
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Run ESLinter
-        run: npm run lint
+        run: npm run lint -w ${{ inputs.package }}
 
       - name: Run tests
-        run: npm run test
+        run: npm run test -w ${{ inputs.package }}
