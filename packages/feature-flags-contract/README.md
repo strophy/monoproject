@@ -7,6 +7,8 @@ Data Contract to store Dash Platform feature flags
 
 ## Table of Contents
 
+Trigger build
+
 - [Install](#install)
 - [Usage](#usage)
 - [Contributing](#contributing)
