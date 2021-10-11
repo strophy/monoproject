@@ -20,4 +20,4 @@ jobs:
     name: Run DPP tests
     uses: strophy/monoproject/.github/workflows/test.yml@use-package-commands
     with:
-      package: '@dashevo/js-dpp'
+      package: '@dashevo/dpp'
