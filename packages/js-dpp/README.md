@@ -22,6 +22,8 @@ npm install @dashevo/dpp
 
 ## Usage
 
+Trigger JS-DPP build
+
 See [documentation](https://dashevo.github.io/js-dpp/#/usage/DashPlatformProtocol) 
 
 ## Maintainer
