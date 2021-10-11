@@ -18,6 +18,6 @@ on:
 jobs:
   dpns-contract-tests:
     name: Run DPNS Contract tests
-    uses: strophy/monoproject/.github/workflows/test.yml@master
+    uses: strophy/monoproject/.github/workflows/test.yml@use-package-commands
     with:
-      package-directory: packages/dpns-contract
+      package: '@dashevo/dpns-contract'
