@@ -5,7 +5,7 @@ on:
 
 jobs:
   release-npm:
-    name: Release Dash Platform component
+    name: Release Dash Platform to NPM
     runs-on: ubuntu-20.04
     steps:
       - name: Wait for tests to succeed
@@ -47,7 +47,7 @@ jobs:
         run: npm publish --workspaces --tag ${{ steps.tag.outputs.result }}
 
   release-docker:
-    name: Release Dash Platform component
+    name: Release Dash Platform to Docker Hub
     runs-on: ubuntu-20.04
     needs: release-npm
     steps:
@@ -92,7 +92,7 @@ jobs:
           result-encoding: string
           script: "return (context.payload.release.tag_name.includes('-dev') ? '-dev' : '');"
 
-      - name: Set Docker tags and labels
+      - name: Set Docker tags and labels for DAPI
         id: dapi_docker_meta
         uses: docker/metadata-action@v3
         with:
@@ -106,7 +106,7 @@ jobs:
             latest=${{ !contains(github.event.release.tag_name, '-dev') }}
             suffix=${{ steps.suffix.outputs.result }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image for DAPI
         id: dapi_docker_build
         uses: docker/build-push-action@v2
         with:
@@ -118,7 +118,7 @@ jobs:
           labels: ${{ steps.dapi_docker_meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
 
-      - name: Set Docker tags and labels
+      - name: Set Docker tags and labels for Drive
         id: drive_docker_meta
         uses: docker/metadata-action@v3
         with:
@@ -132,7 +132,7 @@ jobs:
             latest=${{ !contains(github.event.release.tag_name, '-dev') }}
             suffix=${{ steps.suffix.outputs.result }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image for Drive
         id: drive_docker_build
         uses: docker/build-push-action@v2
         with:
