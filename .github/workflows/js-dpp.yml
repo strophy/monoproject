@@ -21,3 +21,10 @@ jobs:
     uses: strophy/monoproject/.github/workflows/test.yml@master
     with:
       package: '@dashevo/dpp'
+
+  js-dpp-release-npm:
+    name: Release DPP on NPM
+    needs: js-dpp-tests
+    uses: strophy/monoproject/.github/workflows/release-npm.yml@release-ci
+    with:
+      package: '@dashevo/dpp'
