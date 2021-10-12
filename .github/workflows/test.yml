@@ -1,3 +1,5 @@
+name: Package Tests
+
 on:
   workflow_call:
     inputs:

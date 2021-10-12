@@ -1,3 +1,5 @@
+name: Release Packages
+
 on:
   release:
     types:
