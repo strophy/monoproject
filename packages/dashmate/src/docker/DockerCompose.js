@@ -147,10 +147,12 @@ class DockerCompose {
       console.log('About to build log');
       console.dir('About to build dir');
       console.log(`docker buildx bake --load ${driveArg} ${dapiArg}`);
-      await execAsync(
+      const { err, stdout, stderr } = await execAsync(
         `docker buildx bake --load ${driveArg} ${dapiArg}`,
         this.getOptions(envs),
       );
+      console.log('Build logs:');
+      console.log(err, stdout, stderr);
     } catch (e) {
       throw new DockerComposeError(e);
     }
