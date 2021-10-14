@@ -144,6 +144,9 @@ class DockerCompose {
 
       // Temporarily build with buildx bake until docker compose build selects correct builder
       // https://github.com/docker/compose-cli/issues/1840
+      console.log('About to build log');
+      console.dir('About to build dir');
+      console.log(`docker buildx bake --load ${driveArg} ${dapiArg}`);
       await execAsync(
         `docker buildx bake --load ${driveArg} ${dapiArg}`,
         this.getOptions(envs),
