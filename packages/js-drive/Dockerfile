@@ -32,6 +32,10 @@ COPY packages/ /platform/packages/
 # Remove packages that drive won't need
 RUN rm -rf /platform/packages/dapi /platform/packages/dashmate /platform/packages/platform-test-suite platform/packages/js-dash-sdk /platform/packages/wallet-lib
 
+# Show cache mount contents
+RUN --mount=type=cache,target=/root/.npm --mount=type=cache,target=/root/.cache du -hd1 /root/.npm
+RUN --mount=type=cache,target=/root/.npm --mount=type=cache,target=/root/.cache du -hd1 /root/.cache
+
 # Install drive-specific dependencies
 RUN --mount=type=cache,target=/root/.npm --mount=type=cache,target=/root/.cache npm ci -w @dashevo/drive --production
 
