@@ -27,7 +27,7 @@ $DASHMATE_BIN group:stop
 
 MINT_FILE_PATH=${PATH_TO_PROJECT_ROOT}/mint.log
 
-$DASHMATE_BIN wallet:mint --verbose --config=local_seed 100 | tee "${MINT_FILE_PATH}"
+$DASHMATE_BIN wallet:mint --verbose --config=local_seed 100 | tee "${MINT_FILE_PATH}" # Runs build again
 FAUCET_ADDRESS=$(grep -m 1 "Address:" "${MINT_FILE_PATH}" | awk '{printf $3}')
 FAUCET_PRIVATE_KEY=$(grep -m 1 "Private key:" "${MINT_FILE_PATH}" | awk '{printf $4}')
 
