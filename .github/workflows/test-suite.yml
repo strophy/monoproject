@@ -60,4 +60,4 @@ jobs:
         uses: dashevo/gh-action-check-package-lock@v1
 
       - name: Run test suite
-        run: npm run setup_and_test
+        run: npm run setup_and_test_ci
