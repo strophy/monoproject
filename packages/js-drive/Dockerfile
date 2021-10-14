@@ -18,8 +18,8 @@ RUN npm install -g node-gyp-cache@0.2.1 && \
     git config --global url."https://github.com/".insteadOf ssh://git@github.com/
 
 # Install npm modules
-# Update npm to version 7 to work with workspaces
-RUN npm install -g npm@7
+# Update npm to version 8 to work with workspaces
+RUN npm install -g npm@8
 
 ENV npm_config_zmq_external=true
 
