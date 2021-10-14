@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "setup": "npm ci && npm run build && npm run clean:data && npm run configure && npm run stop",
+    "setup_ci": "npm ci && npm run build && npm run configure && npm run stop",
     "configure:dashmate": "./scripts/configure_dashmate.sh",
     "configure:network": "./scripts/setup_local_network.sh",
     "configure:tests": "./packages/dashmate/bin/configure_test_suite.sh",
@@ -11,9 +12,10 @@
     "clean:build": "",
     "clean": "npm run clean:data && npm run clean:build && npm run build",
     "start": "./packages/dashmate/bin/dashmate group:start --wait-for-readiness --verbose",
-    "stop": "./packages/dashmate/bin/dashmate group:stop",
+    "stop": "./packages/dashmate/bin/dashmate group:stop --verbose",
     "test:suite": "npm run start && npm run test --workspace=@dashevo/platform-test-suite ; npm run stop",
     "setup_and_test": "npm run setup && npm run test:suite",
+    "setup_and_test_ci": "npm run setup_ci && npm run test:suite",
     "build": "npm run build -w @dashevo/dapi-grpc -w @dashevo/abci -w @dashevo/dpp -w @dashevo/dapi-client -w @dashevo/wallet-lib -w dash"
   },
   "devDependencies": {
