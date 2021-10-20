@@ -44,23 +44,13 @@ jobs:
         run: npm run lint -w ${{ inputs.package }}
 
       - name: Get list of packages to test
-        id: deps-list
-        run: packster list ${{ inputs.package }} > package-list.txt
+        id: packster
+        run: echo "::set-output name=deps::$(packster list ${{ inputs.package }} --json)"
 
       - name: Show registered packster list output
-        run: cat package-list.txt
-
-      - name: Convert Packster output to JSON
-        uses: actions/github-script@v5
-        id: deps-json
-        with:
-          result-encoding: string
-          script: |
-            fetch("./package-list.txt")
-              .then(res => res.json())
-              .then(data => console.log(data));
+        run: echo ${{ steps.packster.outputs.deps }}
 
       - name: Run tests on packages
         run: |
-          readarray -t deps < <(jq -r '.[] | .[]' < echo ${{ steps.deps-json.outputs.result }})
+          readarray -t deps < <(jq -r '.[] | .[]' < echo ${{ steps.packster.outputs.deps }})
           for dep in "${deps[@]}"; done npm run test -w "$dep"; done
