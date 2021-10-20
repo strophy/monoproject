@@ -47,7 +47,7 @@ jobs:
           echo ::set-output name=deps::$(packster list ${{ inputs.package }})
 
       - name: Convert Packster output to JSON
-                uses: actions/github-script@v3
+        uses: actions/github-script@v3
         id: deps-json
         with:
           result-encoding: string
