@@ -45,21 +45,20 @@ jobs:
 
       - name: Get list of packages to test
         id: deps-list
-        run: |
-          echo "::set-output name=hello::world"
-          echo "::set-output name=deps::$(packster list ${{ inputs.package }})"
+        run: packster list ${{ inputs.package }} > package-list.txt
 
       - name: Show registered packster list output
-        run: |
-          echo hello ${{ steps.deps-list.outputs.hello}}
-          echo ${{ steps.deps-list.outputs.deps}}
+        run: cat package-list.txt
 
       - name: Convert Packster output to JSON
         uses: actions/github-script@v5
         id: deps-json
         with:
           result-encoding: string
-          script: "console.log(JSON.stringify(${{ steps.deps-list.outputs.deps }}));"
+          script: |
+            fetch("./package-list.txt")
+              .then(res => res.json())
+              .then(data => console.log(data));
 
       - name: Run tests on packages
         run: |
