@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Set release tag
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         id: tag
         with:
           result-encoding: string
@@ -88,7 +88,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set suffix to Docker tags
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         id: suffix
         with:
           result-encoding: string

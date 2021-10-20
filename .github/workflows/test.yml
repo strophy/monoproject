@@ -52,7 +52,7 @@ jobs:
         run: echo ${{ steps.deps-list.outputs.result}}
 
       - name: Convert Packster output to JSON
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         id: deps-json
         with:
           result-encoding: string
