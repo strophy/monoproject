@@ -22,17 +22,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install Packster
-        run: |
-          pwd
-          ls
-          npm ls @dashevo/dapi-client --json
-          npm install -g packster
-
-      # Exit with error here if dependencies are not configured correctly
-      - name: Run Packster
-        run: packster check ${{ inputs.package }}
-
       - name: Enable NPM cache
         uses: actions/cache@v2
         with:
@@ -43,6 +32,13 @@ jobs:
 
       - name: Install NPM dependencies
         run: npm ci
+
+      - name: Install Packster
+        run: npm install -g packster
+
+      # Exit with error here if dependencies are not configured correctly
+      - name: Run Packster
+        run: packster check ${{ inputs.package }}
 
       - name: Run ESLinter
         run: npm run lint -w ${{ inputs.package }}
