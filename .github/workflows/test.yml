@@ -48,12 +48,15 @@ jobs:
         run: |
           echo ::set-output name=deps::$(packster list ${{ inputs.package }})
 
+      - name: Show registered packster list output
+        run: echo ${{ steps.deps-list.outputs.result}}
+
       - name: Convert Packster output to JSON
         uses: actions/github-script@v3
         id: deps-json
         with:
           result-encoding: string
-          script: "return JSON.stringify(${{ steps.deps-list.outputs.result }})"
+          script: "console.log(JSON.stringify(${{ steps.deps-list.outputs.result }}));"
 
       - name: Run tests on packages
         run: |
