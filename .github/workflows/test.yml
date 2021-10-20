@@ -20,6 +20,13 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install Packster
+        run: npm install -g packster
+
+      # Exit with error here if dependencies are not configured correctly
+      - name: Run Packster
+        run: packster check ${{ inputs.package }}
+
       - name: Enable NPM cache
         uses: actions/cache@v2
         with:
@@ -34,5 +41,20 @@ jobs:
       - name: Run ESLinter
         run: npm run lint -w ${{ inputs.package }}
 
-      - name: Run tests
-        run: npm run test -w ${{ inputs.package }}
+      - name: Get list of packages to test
+        id: deps-list
+        run: |
+          echo ::set-output name=deps::$(packster list ${{ inputs.package }})
+
+      - name: Convert Packster output to JSON
+                uses: actions/github-script@v3
+        id: deps-json
+        with:
+          result-encoding: string
+          script: "return JSON.stringify(${{ steps.deps-list.outputs.result }})"
+
+      - name: Run tests on packages
+        run: |
+          readarray -t deps < <(jq -r '.[] | .[]' < echo ${{ steps.deps-json.outputs.result }})
+          for dep in "${deps[@]}"; done npm run test -w "$dep"; done
+
