@@ -45,12 +45,9 @@ jobs:
 
       - name: Get list of packages to test
         id: packster
-        run: echo "::set-output name=deps::$(packster list ${{ inputs.package }} --json)"
-
-      - name: Show registered packster list output
-        run: echo ${{ steps.packster.outputs.deps }}
+        run: echo "::set-output name=dependants::$(packster list ${{ inputs.package }} --json)"
 
       - name: Run tests on packages
         run: |
-          readarray -t deps < <(jq -r '.[] | .[]' < echo ${{ steps.packster.outputs.deps }})
-          for dep in "${deps[@]}"; done npm run test -w "$dep"; done
+          readarray -t dependants < <(jq -r '.[] | .[]' < echo ${{ steps.packster.outputs.dependants }})
+          for dependant in "${dependants[@]}"; do npm run test -w "$dependant"; done
