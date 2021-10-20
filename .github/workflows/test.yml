@@ -23,7 +23,11 @@ jobs:
           node-version: '16'
 
       - name: Install Packster
-        run: npm install -g packster
+        run: |
+          pwd
+          ls
+          npm ls @dashevo/dapi-client --json
+          npm install -g packster
 
       # Exit with error here if dependencies are not configured correctly
       - name: Run Packster
