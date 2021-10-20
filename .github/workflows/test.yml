@@ -27,7 +27,9 @@ jobs:
 
       # Exit with error here if dependencies are not configured correctly
       - name: Run Packster
-        run: packster check "${{ inputs.package }}"
+        run: |
+          pwd
+          packster check ${{ inputs.package }}
 
       - name: Enable NPM cache
         uses: actions/cache@v2
