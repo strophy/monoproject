@@ -46,10 +46,13 @@ jobs:
       - name: Get list of packages to test
         id: deps-list
         run: |
-          echo ::set-output name=deps::$(packster list ${{ inputs.package }})
+          echo "::set-output name=hello::world"
+          echo "::set-output name=deps::$(packster list ${{ inputs.package }})"
 
       - name: Show registered packster list output
-        run: echo ${{ steps.deps-list.outputs.deps}}
+        run: |
+          echo hello ${{ steps.deps-list.outputs.hello}}
+          echo ${{ steps.deps-list.outputs.deps}}
 
       - name: Convert Packster output to JSON
         uses: actions/github-script@v5
@@ -62,4 +65,3 @@ jobs:
         run: |
           readarray -t deps < <(jq -r '.[] | .[]' < echo ${{ steps.deps-json.outputs.result }})
           for dep in "${deps[@]}"; done npm run test -w "$dep"; done
-
