@@ -1,5 +1,3 @@
-Trigger build
-
 ## [0.20.1](https://github.com/dashevo/dapi-client/compare/v0.20.0...v0.20.1) (2021-05-26)
 
 
