@@ -49,5 +49,5 @@ jobs:
 
       - name: Run tests on packages
         run: |
-          readarray -t dependants < <(jq -r '.[] | .[]' < echo ${{ steps.packster.outputs.dependants }})
+          readarray -t dependants < <(jq -r '.[] | .[]' <<< '${{ steps.packster.outputs.dependants }}')
           for dependant in "${dependants[@]}"; do npm run test -w "$dependant"; done
