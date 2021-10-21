@@ -37,3 +37,5 @@ Feel free to dive in! [Open an issue](https://github.com/dashevo/js-dpp/issues/n
 ## License
 
 [MIT](LICENSE) &copy; Dash Core Group, Inc.
+
+Trigger DPP build
