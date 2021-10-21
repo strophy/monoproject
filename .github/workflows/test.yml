@@ -47,9 +47,4 @@ jobs:
         run: echo "::set-output name=dependants::$(packster list ${{ inputs.package }} --json)"
 
       - name: Run tests on packages
-        run: |
-          readarray -t dependants < <(jq -r '.[] | .[]' <<< '${{ steps.packster.outputs.dependants }}')
-          for dependant in "${dependants[@]}";
-            do npm run test -w "$dependant" &
-          done
-          wait
+        run: ./scripts/run_tests.sh ${{ steps.packster.outputs.dependants }}
