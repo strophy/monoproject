@@ -111,5 +111,3 @@ Feel free to dive in! [Open an issue](https://github.com/dashevo/js-dapi-client/
 ## License
 
 [MIT](LICENSE) &copy; Dash Core Group, Inc.
-
-Trigger build
