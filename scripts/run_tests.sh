@@ -1,8 +1,6 @@
 #!/bin/bash
 
-set -x
-
-readarray -t dependants < <(jq -r '.[] | .[]' <<< "$1")
+readarray -t dependants < <(jq -r '.[] | .[]' <<< "$1" )
 
 pids=""
 RESULT=0
