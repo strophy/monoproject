@@ -10,8 +10,8 @@ RUN apk update && \
                        zeromq-dev
 
 # Enable node-gyp cache
-RUN npm install -g node-gyp-cache@0.2.1 && \
-    npm config set node_gyp node-gyp-cache
+#RUN npm install -g node-gyp-cache@0.2.1 && \
+#    npm config set node_gyp node-gyp-cache
 
 # Update npm to version 8 to work with workspaces
 RUN npm install -g npm@8

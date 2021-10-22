@@ -13,9 +13,10 @@ RUN apk update && \
 
 # Enable node-gyp cache
 # and replacing github url https://github.com/actions/setup-node/issues/214
-RUN npm install -g node-gyp-cache@0.2.1 && \
-    npm config set node_gyp node-gyp-cache && \
-    git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+RUN git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+# npm install -g node-gyp-cache@0.2.1 && \
+    # npm config set node_gyp node-gyp-cache && \
+    
 
 # Install npm modules
 # Update npm to version 8 to work with workspaces
